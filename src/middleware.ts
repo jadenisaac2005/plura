@@ -1,8 +1,7 @@
 import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server'
 import { NextResponse } from 'next/server';
 
-const isPublicRoute = createRouteMatcher(['/agency/sign-in(.*)', '/agency/sign-up(.*)', '/site', '/', '/api/uploadthing'])
-
+const isPublicRoute = createRouteMatcher(['/agency/sign-in(.*)', '/agency/sign-up(.*)', '/site', '/', '/api/uploadthing', '/:domain'])
 export default clerkMiddleware((auth, request) => {
         if (!isPublicRoute(request)) {
             auth().protect()
