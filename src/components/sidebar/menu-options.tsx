@@ -169,7 +169,7 @@ const MenuOptions = ({
                                                 <CommandItem key={subaccount.id}>
                                                     {defaultOpen?(
                                                         <Link
-                                                            href={`/sunaccount/${subaccount?.id}`}
+                                                            href={`/subaccount/${subaccount?.id}`}
                                                             className="flex gap-4 w-full h-full"
                                                         >
                                                             <div className='relative w-16'>
@@ -190,7 +190,7 @@ const MenuOptions = ({
                                                         ) : (
                                                             <SheetClose asChild>
                                                                 <Link
-                                                                    href={`/sunaccount/${subaccount?.id}`}
+                                                                    href={`/subaccount/${subaccount?.id}`}
                                                                     className="flex gap-4 w-full h-full"
                                                                 >
                                                                     <div className='relative w-16'>

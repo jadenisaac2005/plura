@@ -1,10 +1,16 @@
 import React from 'react'
 
-type Props = {}
+type Props = {
+    params: { subaccountId: string }
+    searchParams: {
+        code: string
+    }
+}
 
-const SubaccountPageId = (props: Props) => {
+const SubaccountPageId = async ({ params, searchParams }: Props) => {
+
     return (
-        <div className='pt-32'>SubaccountPageId</div>
+        <div>SubaccountPageId</div>
     )
 }
 

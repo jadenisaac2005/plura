@@ -1,4 +1,5 @@
 
+import BlurPage from '@/components/global/blur-page'
 import InfoBar from '@/components/global/infobar'
 import Sidebar from '@/components/sidebar'
 import Unauthorized from '@/components/unauthorized'
@@ -36,39 +37,41 @@ const SubaccountLayout = async ({ children, params }: Props) => {
             permissions.access && permissions.subAccountId === params.subaccountId
         )
         if (!hasPermission) {
-        return <Unauthorized />
+            return <Unauthorized />
         }
 
         const allNotifications = await getNotificationAndUser(agencyId)
 
         if (
-        user.privateMetadata.role === 'AGENCY_ADMIN' ||
-        user.privateMetadata.role === 'AGENCY_OWNER'
+            user.privateMetadata.role === 'AGENCY_ADMIN' ||
+            user.privateMetadata.role === 'AGENCY_OWNER'
         ) {
-        notifications = allNotifications
+            notifications = allNotifications
         } else {
-        const filteredNoti = allNotifications?.filter(
-            (item) => item.subAccountId === params.subaccountId
-        )
-        if (filteredNoti) notifications = filteredNoti
+            const filteredNoti = allNotifications?.filter(
+                (item) => item.subAccountId === params.subaccountId
+            )
+            if (filteredNoti) notifications = filteredNoti
         }
     }
 
     return (
         <div className="h-screen overflow-hidden">
-        <Sidebar
-            id={params.subaccountId}
-            type="subaccount"
-        />
-
-        <div className="md:pl-[300px]">
-            <InfoBar
-            notifications={notifications}
-            role={user.privateMetadata.role as Role}
-            subAccountId={params.subaccountId as string}
+            <Sidebar
+                id={params.subaccountId}
+                type="subaccount"
             />
-            <div className="relative">{children}</div>
-        </div>
+
+            <div className="md:pl-[300px]">
+                <InfoBar
+                notifications={notifications}
+                role={user.privateMetadata.role as Role}
+                subAccountId={params.subaccountId as string}
+                />
+                <div className="relative">
+                    <BlurPage>{children}</BlurPage>
+                </div>
+            </div>
         </div>
     )
 }
